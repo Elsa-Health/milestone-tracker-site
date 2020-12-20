@@ -8,6 +8,11 @@
 		"test": "jest --watchAll",
 		"test:coverage": "CI=true yarn test -- --env=jsdom --coverage"
 	},
+  {
+    "engines": {
+      "node": ">=12.13.0"
+    }
+  }
 	"dependencies": {
 		"@tailwindcss/forms": "^0.2.1",
 		"@tailwindcss/typography": "^0.3.1",
