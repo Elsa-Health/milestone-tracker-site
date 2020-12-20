@@ -29,10 +29,12 @@ describe("Is Milestone Checked", () => {
 			})),
 		})) || [];
 
-	mockTracker[0].results[0].value = true;
-	test("it should return checked for checked item", () => {
+	test("it should return false because no item is checked", () => {
 		expect(isMilestoneChecked(mockTracker, "language", "phrases")).toBe(
-			true
+			false
 		);
 	});
+
+	// TODO: add tests for false
+	// TODO: ^^ Requires extracting out the updateTracker method from the IndexPage
 });
