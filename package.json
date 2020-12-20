@@ -5,8 +5,11 @@
 		"dev": "next",
 		"build": "next build",
 		"start": "next start",
-		"test": "jest --watchAll",
+		"test": "jest",
 		"test:coverage": "CI=true yarn test -- --env=jsdom --coverage"
+	},
+	"engines": {
+		"node": ">=12.13.0"
 	},
 	"dependencies": {
 		"@tailwindcss/forms": "^0.2.1",
