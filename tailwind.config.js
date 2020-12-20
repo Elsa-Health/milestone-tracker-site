@@ -10,10 +10,14 @@ module.exports = {
 				"accent-1": "#333",
 				"elsa-blue": "#4665AF",
 			},
+			cursor: ["hover", "focus"],
 		},
 	},
 	variants: {
 		extend: {},
 	},
-	plugins: [require("@tailwindcss/typography"), require('@tailwindcss/forms')],
+	plugins: [
+		require("@tailwindcss/typography"),
+		require("@tailwindcss/forms"),
+	],
 };
