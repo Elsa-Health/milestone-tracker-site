@@ -5,7 +5,7 @@
 		"dev": "next",
 		"build": "next build",
 		"start": "next start",
-		"test": "jest --watchAll",
+		"test": "jest",
 		"test:coverage": "CI=true yarn test -- --env=jsdom --coverage"
 	},
 	"engines": {
