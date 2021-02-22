@@ -5,7 +5,10 @@
 
 ## Pediatric Milestones Tracker Website
 
+
 ![DUB](<https://img.shields.io/badge/Version-0.2.3%20(beta)-yellow>)
+![CI](https://github.com/Elsa-Health/milestone-tracker-site/workflows/CI/badge.svg?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/Elsa-Health/milestone-tracker-site/badge.svg?branch=main)](https://coveralls.io/github/Elsa-Health/milestone-tracker-site?branch=main)
 
 ## Description
 
