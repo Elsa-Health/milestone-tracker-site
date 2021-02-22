@@ -1,9 +1,17 @@
 name: CI
-on: [push]
+on:
+  push:
+    branches:
+      - dev
+      - test/**
+  pull_request:
+    branches:
+      - dev
+      - test/**
+  
 jobs:
-  build:
-    name: Build and test on Node ${{ matrix.node }} and ${{ matrix.os }}
-
+  test:
+    name: Test + Code Coverage on Node ${{ matrix.node }} and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -30,5 +38,26 @@ jobs:
       - name: Test
         run: yarn test --ci --coverage --maxWorkers=2
 
-      - name: Build
-        run: yarn build
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: run-${{ matrix.os }}-${{ matrix.node }}
+          parallel: true
+
+          
+  finish:
+    needs: test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: ['12.13.x', '14.x']
+        os: [ubuntu-latest]
+
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true
+
