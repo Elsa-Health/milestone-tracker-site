@@ -40,17 +40,19 @@ const DevelopmentTracker: React.FC = () => {
 		setTrackerMilestones();
 	}, [age]);
 
-	useEffect(() => {
-		// scroll to top on new page render
-		window.scrollTo(0, 0);
-		if (currentRoute !== "landing") {
-			// Prevent unintentional navigation away from the site
-			window.onbeforeunload = confirmOnPageExit;
-		} else {
-			setTrackerMilestones(); // reset the age milestones to clear state
-			window.onbeforeunload = null;
-		}
-	}, [currentRoute]);
+	//NEXT: Fix console error with useEffect!
+
+	// useEffect(() => {
+	// 	// scroll to top on new page render
+	// 	window.scrollTo(0, 0);
+	// 	if (currentRoute !== "landing") {
+	// 		// Prevent unintentional navigation away from the site
+	// 		window.onbeforeunload = confirmOnPageExit;
+	// 	} else {
+	// 		setTrackerMilestones(); // reset the age milestones to clear state
+	// 		window.onbeforeunload = null;
+	// 	}
+	// }, [currentRoute]);
 
 	const setTrackerMilestones = () => {
 		const ageMilestones = getMilestonesByAge(age);
