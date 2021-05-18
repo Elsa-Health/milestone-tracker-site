@@ -1,3 +1,6 @@
+import _ from "lodash";
+
+
 /**
  * Format Months into a friendlier way when turned into years
  *
@@ -76,3 +79,53 @@ export function getMilestoneTrackScore(
 		total: results?.length || 0,
 	};
 }
+
+
+export const getUpdateTrackerValue = (
+	type: milestoneCategory,
+	code: string,
+	value: boolean,
+	tracker: tracker[]
+) => {
+	console.log(type, code, value, tracker);
+	const trackerClone = _.cloneDeep(tracker);
+	const trackIdx = trackerClone.findIndex((track) => track.code === type);
+	if (trackIdx < 0) return [];
+
+	console.log(trackIdx);
+
+	const resultsIdx = trackerClone[trackIdx].results.findIndex(
+		(result) => result.code === code
+	);
+	if (resultsIdx < 0) return [];
+
+	trackerClone[trackIdx].results[resultsIdx].value = value;
+	return(trackerClone);
+
+	// tracker.find(track => track.code === type)?.results.find(result => result.code === code)?.value = value
+	//setTracker(trackerClone);
+};
+
+export const getGoBack = (
+	routeProgression: route[],
+	currentRoute: route
+) => {
+	const routeIndex = routeProgression.indexOf(currentRoute);
+	if (routeIndex === -1 || routeIndex === 0) return null;
+
+	const newRoute = routeProgression[routeIndex - 1];
+	return newRoute;
+	//setCurrentRoute(newRoute);
+};
+
+export const getOnNext = (
+	routeProgression: route[],
+	currentRoute: route
+) => {
+	const routeIndex = routeProgression.indexOf(currentRoute);
+	if (routeIndex === -1) return null;
+
+	const newRoute = routeProgression[routeIndex + 1];
+	return newRoute;
+	//setCurrentRoute(newRoute);
+};

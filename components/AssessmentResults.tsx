@@ -311,7 +311,7 @@ const AssessmentResults: React.FC<AssessmentResultsProps> = ({
 				</div>
 
 				<div className="mt-8">
-					Note: This assessment does not consittue a medical
+					Note: This assessment does not consitute a medical
 					diagnosis. If you have seiorus concerns about your child's
 					development, please visit a healthcare professional
 				</div>

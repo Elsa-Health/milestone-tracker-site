@@ -6,7 +6,7 @@ interface LandingPageProps {
 }
 
 const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => (
-	<>
+	<div data-testid="LandingPage">
 		<div className="flex-row flex justify-center mb-14">
 			<img
 				src="./elsa-children-main.svg"
@@ -100,9 +100,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => (
 		</div>
 
 		<div className="flex justify-center mt-8">
-			<Button text="Start Tracking" onClick={onStart} />
+			<Button text="Start Tracking" onClick={onStart} data-testid="ButtonLanding"/>
 		</div>
-	</>
+	</div>
 );
 
 export default LandingPage;
