@@ -7,7 +7,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 // add custom jest matchers from jest-dom
 import "@testing-library/jest-dom/extend-expect";
 import LandingPage from "../../components/LandingPage";
-//import Button from "../../components/Button";
+import Button from "../../components/Button";
 //import Button from "../../components/LandingPage";
 
 describe("Testing The Landing Page", () => {
@@ -22,15 +22,15 @@ describe("Testing The Landing Page", () => {
         
     });
 
-    // test("Button click function gets triggered", () => {
-	// 	const onStart = jest.fn();
-	// 	render(<Button text="Start Tracking" onClick={onStart} />);
+    test("Button click function gets triggered", () => {
+		const onStart = jest.fn();
+		render(<Button text="Start Tracking" onClick={onStart} />);
 
-	// 	const button = screen.getByTestId("ButtonLanding");
+		const button = screen.getByTestId("button");
 
-	// 	fireEvent.click(button);
+		fireEvent.click(button);
 
-	// 	expect(onStart).toHaveBeenCalled();
-	// });
+		expect(onStart).toBeCalled();
+	});
 
 })
