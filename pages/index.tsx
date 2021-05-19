@@ -1,11 +1,10 @@
-import Head from "next/head";
 import _ from "lodash";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import LandingPage from "../components/LandingPage";
 import Nav from "../components/nav";
 import { getMilestonesByAge } from "../model";
-import { confirmOnPageExit } from "../common/utils";
+import { confirmOnPageExit, getGoBack, getOnNext } from "../common/utils";
 import ChildFeatures from "../components/ChildFeatures";
 import GrossMotorChecklist from "../components/GrossMotorChecklist";
 import FineMotorChecklist from "../components/FineMotorChecklist";
@@ -13,6 +12,7 @@ import CognitiveChecklist from "../components/CognitiveChecklist";
 import LanguageChecklist from "../components/LanguageChecklist";
 import SocialChecklist from "../components/SocialChecklist";
 import AssessmentResults from "../components/AssessmentResults";
+import {getUpdateTrackerValue} from "../common/utils"
 
 const TrackerContainer: React.FC = ({ children }) => (
 	<div className="bg-gray-50 border-gray-300 border p-8 md:px-14 lg:px-12 rounded-lg">
@@ -20,7 +20,7 @@ const TrackerContainer: React.FC = ({ children }) => (
 	</div>
 );
 
-const DevelopmentTracker: React.FC = () => {
+export const DevelopmentTracker: React.FC = () => {
 	const routeProgression: route[] = [
 		"landing",
 		"features",
@@ -75,40 +75,29 @@ const DevelopmentTracker: React.FC = () => {
 		code: string,
 		value: boolean
 	) => {
-		console.log(type, code, value, tracker);
-		const trackerClone = _.cloneDeep(tracker);
-		const trackIdx = trackerClone.findIndex((track) => track.code === type);
-		if (trackIdx < 0) return;
-
-		console.log(trackIdx);
-
-		const resultsIdx = trackerClone[trackIdx].results.findIndex(
-			(result) => result.code === code
-		);
-		if (resultsIdx < 0) return;
-
-		trackerClone[trackIdx].results[resultsIdx].value = value;
+		
+		let trackerClone = getUpdateTrackerValue(type, code, value, tracker)
 
 		// tracker.find(track => track.code === type)?.results.find(result => result.code === code)?.value = value
+	
 		setTracker(trackerClone);
 	};
 
-	const goBack = () => {
-		const routeIndex = routeProgression.indexOf(currentRoute);
-		if (routeIndex === -1 || routeIndex === 0) return null;
 
-		const newRoute = routeProgression[routeIndex - 1];
-		setCurrentRoute(newRoute);
+	const goBack = () => {
+		let newRoute = getGoBack(routeProgression, currentRoute)
+		if (newRoute !== null){
+			setCurrentRoute(newRoute);
+		}
 	};
 
 	const exitTracker = () => setCurrentRoute("landing");
 
 	const onNext = () => {
-		const routeIndex = routeProgression.indexOf(currentRoute);
-		if (routeIndex === -1) return null;
-
-		const newRoute = routeProgression[routeIndex + 1];
-		setCurrentRoute(newRoute);
+		let newRoute = getOnNext(routeProgression, currentRoute)
+		if (newRoute !== null){
+			setCurrentRoute(newRoute);
+		}
 	};
 
 	const ageMilestones = getMilestonesByAge(age);
@@ -194,7 +183,7 @@ const DevelopmentTracker: React.FC = () => {
 export default function IndexPage() {
 	return (
 		<div data-testid="IndexPage">
-			<Head>
+			<head>
 				<title>Elsa Health | Pediatric Milestone Tracker</title>
 				<meta
 					name="viewport"
@@ -204,7 +193,7 @@ export default function IndexPage() {
 					name="description"
 					content="Elsa Health child milestone assessment tool online. Assess the developmental progress of your child online."
 				/>
-			</Head>
+			</head>
 			<Nav />
 			<div className="py-20 px-4 md:px-24 lg:px-30 xl:px-60 2xl:px-80">
 				<DevelopmentTracker />

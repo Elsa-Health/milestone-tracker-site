@@ -14,7 +14,7 @@ const LanguageChecklist: React.FC<ChecklistPageProps> = ({
 	onNext,
 }) => {
 	return (
-		<div>
+		<div data-testId="LanguageChecklist">
 			<TrackerNavigator onBack={goBack} onCancel={exitTracker} />
 			<div className="px-0 md:px-5 lg:px-10 xl:px-20 2xl:px-40">
 				<h1 className="text-xl bold md:font-normal lg:text-2xl mb-4">
