@@ -1,6 +1,7 @@
 import { update } from "lodash";
 import { friendlyFormatMonths, getMilestoneTrackScore, isMilestoneChecked } from "../common/utils";
-import { getMilestonesByAge, milestones } from "../model";
+import { getMilestoneByAgeAndCategory, getMilestonesByAge, milestones } from "../model";
+import {getUpdateTrackerValue} from "../common/utils"
 
 const mths= 25;
 // const years_2= 24;
@@ -32,6 +33,7 @@ describe("Friendly Format Months", () => {
 
 describe("Is Milestone Checked", () => {
 	const ageMilestones = getMilestonesByAge(24);
+	//const milestones = getMilestoneByAgeAndCategory;
 
 	const mockTracker =
 		ageMilestones?.categories.map((category) => ({
@@ -49,24 +51,14 @@ describe("Is Milestone Checked", () => {
 		);
 	});
 
-	// const milestoneupdate = getMilestoneTrackScore;
-
-	// const mockTracker1 =
-	// 	milestoneupdate()?((category: { code: any; milestones: any[]; }) => ({
-	// 		code: category.code,
-	// 		tracker: category.milestones.map((mile) => ({
-	// 			code: mile.code,
-	// 			weight: mile.weight,
-	// 			value: false,
-	// 		})),
-	// 	})) || [];
-
-	// test("it should return false because no item is checked", () => {
-	// 	expect(isMilestoneChecked(mockTracker1, "language", "phrases")).toBe(
-	// 		false
-	// 	);
-	// });
-
 	// TODO: add tests for false
 	// TODO: ^^ Requires extracting out the updateTracker method from the IndexPage
+});
+
+describe("Is Tracker Updated", () => {
+
+	test("update should return false because no new item is pushed", () =>{
+		expect(getUpdateTrackerValue("gross motor", "language", false, [])).toStrictEqual([]);
+	})
+
 });

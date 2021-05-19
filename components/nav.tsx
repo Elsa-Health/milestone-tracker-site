@@ -4,7 +4,7 @@ const links = [{ href: "https://elsa.health", label: "About Elsa" }];
 
 export default function Nav() {
 	return (
-		<nav>
+		<nav data-testid="navId">
 			<ul className="flex items-center justify-between px-8 pt-4">
 				<li className="mr-4">
 					<Link href="/">
