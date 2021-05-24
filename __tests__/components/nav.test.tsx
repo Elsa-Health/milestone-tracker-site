@@ -13,10 +13,15 @@ describe("Testing The NavBar", () => {
     test("Is it rendered", () =>{
        // const onStart = jest.fn();
        // const callBack = jest.fn();
-
         render(<Nav/>);
-
         expect (screen.getByTestId("navId")).toBeInTheDocument();
-
+        
     });
+
+    test("Check if img is rendered", () =>{
+        render(<Nav/>);
+        //screen.getAllByRole('');
+        expect (screen.getByAltText("Elsa Health")).toBeInTheDocument;
+
+    })
 })

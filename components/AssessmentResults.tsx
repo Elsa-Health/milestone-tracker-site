@@ -34,7 +34,7 @@ const AssessmentResults: React.FC<AssessmentResultsProps> = ({
 			languageScore.passed +
 			socialScore.passed);
 	return (
-		<div>
+		<div data-testid="AssessmentResults" >
 			{/* <TrackerNavigator onBack={goBack} onCancel={exitTracker} /> */}
 			<div className="px-0 md:px-5 lg:px-10 xl:px-20 2xl:px-40 pt-4">
 				<h1 className="text-2xl md:text-3xl mb-2 prose font-bold">

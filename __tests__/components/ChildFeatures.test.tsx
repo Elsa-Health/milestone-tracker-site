@@ -10,5 +10,7 @@ import ChildFeautres from "../../components/ChildFeatures";
 
 test ("ChildFeatures Component Renders Appropriately", () => {
 
+    const onChange = jest.fn();
     expect(ChildFeautres).toBeDefined();
+    expect(onChange(onChange)).toBeUndefined();
 })

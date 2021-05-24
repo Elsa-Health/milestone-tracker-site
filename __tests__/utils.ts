@@ -1,35 +1,36 @@
 import { update } from "lodash";
-import { friendlyFormatMonths, getMilestoneTrackScore, isMilestoneChecked } from "../common/utils";
+import { confirmOnPageExit, friendlyFormatMonths, getMilestoneTrackScore, getUpdateTrackerValue, isMilestoneChecked } from "../common/utils";
 import { getMilestoneByAgeAndCategory, getMilestonesByAge, milestones } from "../model";
-import {getUpdateTrackerValue} from "../common/utils"
 
-const mths= 25;
-// const years_2= 24;
+const months1= 24;
+const months2= 33;
+const months3= 9;
 // const notDivisible_1= 33;
 // const notDivisible_2= 26;
 
 describe("Friendly Format Months", () => {
 
-	if (mths>=12 && mths%12 == 0){
+	// if (months1>=12 && months1%12 == 0){
 	test("its should return years given months", () => {
-		expect(friendlyFormatMonths(mths)).toBe(mths/12+" Years");
+		expect(friendlyFormatMonths(months1)).toBe(months1/12+" Years");
 		//console.log(mths/12+" Years");
-	});
-	}
-	else if (mths>12 && mths%12 != 0){
+	 });
+	// }
+	// else if (months>12 && months%12 != 0){
 	test("its should return years given months that are not divisible by 12", () => {
-		expect(friendlyFormatMonths(mths)).toBe(Math.round(mths/12)+" Years");
+		expect(friendlyFormatMonths(months2)).toBe(Math.round(months2/12)+" Years");
 		//expect(friendlyFormatMonths(notDivisible_1)).toBe(Math.round(notDivisible_1/12)+" Years");
 		//console.log(Math.round(mths/12)+" Years");
-	});
-	}
-	else if(mths<12){
+	 });
+	// }
+	// else if(months<12){
 	test("its should return months given months that are not more than 12", () => {
-		expect(friendlyFormatMonths(mths)).toBe(mths+" Months");
+		expect(friendlyFormatMonths(months3)).toBe(months3+" Months");
 		//console.log(mths+" Months");
-	});
-	}
+	 });
+	// }
 });
+
 
 describe("Is Milestone Checked", () => {
 	const ageMilestones = getMilestonesByAge(24);
@@ -62,3 +63,34 @@ describe("Is Tracker Updated", () => {
 	})
 
 });
+
+describe("Get Milestone TrackScore ", () =>{
+
+	test("Is the value true?", () =>{
+
+		const score = getMilestoneTrackScore([], "0");
+		expect(score).toBeDefined();
+	})
+})
+
+// describe("checking Function confirmOnPageExit", () =>{
+// 	test("clicking Exit should ask for confirmation", () =>{
+// 		const map = {};
+		
+// 		window.addEventListener = jest.fn((event, cb) => {
+//   			map[event] = cb;
+
+		
+// 	});
+
+// 	})
+// })
+
+describe("Is GoBack present", () => {
+
+	const onGoback = jest.fn();
+
+	test("back should return to the current route", () =>{
+		expect(onGoback).toHaveBeenCalledTimes(0);
+	})
+})

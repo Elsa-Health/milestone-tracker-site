@@ -7,6 +7,7 @@ import { render, screen } from "@testing-library/react";
 // add custom jest matchers from jest-dom
 import "@testing-library/jest-dom/extend-expect";
 import GrossMotorChecklist from "../../components/GrossMotorChecklist";
+import { getUpdateTrackerValue } from "../../common/utils";
 
 describe ("Checking the Gross Motor Checklist", () => {
     test("Renders the buttons and other content from the component", () => {
@@ -18,4 +19,11 @@ describe ("Checking the Gross Motor Checklist", () => {
     
         expect(screen.getByTestId("GrossMotorChecklist")).toBeInTheDocument();
     });
+
+    test ("Is the onChange function called", () =>{
+        const onChange = jest.fn();
+        const update = getUpdateTrackerValue("gross motor", "code", true, [])
+        expect(onChange(onChange)).toBeUndefined();
+        expect((update)).toStrictEqual([]);
+    })
 })

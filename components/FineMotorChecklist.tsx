@@ -34,7 +34,7 @@ const FineMotorChecklist: React.FC<ChecklistPageProps> = ({
 									(result) => result.code === milestone.code
 								)?.value || false;
 						return (
-							<Card
+							<Card data-testid="input"
 								key={milestone.text}
 								containerClassName="mb-4"
 							>
@@ -48,7 +48,7 @@ const FineMotorChecklist: React.FC<ChecklistPageProps> = ({
 										</label>
 									</div>
 									<div className="col-span-2 md:col-span-1 justify-center flex">
-										<input
+										<input >
 											id={milestone.code}
 											name={milestone.code}
 											type="checkbox"
@@ -61,7 +61,7 @@ const FineMotorChecklist: React.FC<ChecklistPageProps> = ({
 												)
 											}
 											className="h-6 w-6 text-elsa-blue focus:ring-elsa-blue border-gray-300 rounded cursor-pointer"
-										/>
+										</input>
 									</div>
 								</div>
 							</Card>

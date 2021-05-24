@@ -51,6 +51,7 @@ const CognitiveChecklist: React.FC<ChecklistPageProps> = ({
 										<input
 											id={milestone.code}
 											name={milestone.code}
+											ref="updateCC"
 											type="checkbox"
 											checked={isChecked}
 											onChange={() =>
@@ -60,7 +61,7 @@ const CognitiveChecklist: React.FC<ChecklistPageProps> = ({
 													!isChecked
 												)
 											}
-											className="h-6 w-6 text-elsa-blue focus:ring-elsa-blue border-gray-300 rounded cursor-pointer"
+											className="updateCC h-6 w-6 text-elsa-blue focus:ring-elsa-blue border-gray-300 rounded cursor-pointer"
 										/>
 									</div>
 								</div>
